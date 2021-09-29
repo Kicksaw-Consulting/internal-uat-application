@@ -27,6 +27,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>UAT_Feedback__c.PageReferenceInfo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>UAT_Feedback__c.RecordURL__c</field>
         <readable>true</readable>
     </fieldPermissions>

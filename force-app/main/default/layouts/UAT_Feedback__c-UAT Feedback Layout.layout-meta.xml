@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>Steps__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PageReferenceInfo__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

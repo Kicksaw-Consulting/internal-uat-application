@@ -34,6 +34,27 @@
                 <elementReference>currentUser</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.RecordURL__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>pageReferenceInfo.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.ObjectName__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>pageReferenceInfo.objectApiName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.PageReferenceInfo__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>pageReferenceInfo.jsonInfo</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_UAT_Feedback_Item</targetReference>
         </connector>
@@ -82,8 +103,8 @@
     <screens>
         <name>New_UAT_Feedback_Item</name>
         <label>New UAT Feedback Item</label>
-        <locationX>465</locationX>
-        <locationY>295</locationY>
+        <locationX>444</locationX>
+        <locationY>300</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -113,6 +134,14 @@
             <fieldText>Steps to recreate</fieldText>
             <fieldType>LargeTextArea</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pageReferenceInfo</name>
+            <extensionName>c:currentPageReferenceInfo</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
