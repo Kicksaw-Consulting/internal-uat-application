@@ -21,6 +21,9 @@ sh ./scripts/create_scratch.sh $scratchAlias
 echo "Opening new org...\n"
 sfdx force:org:open 
 
+echo "Pushing source metadata...\n"
+sfdx force:source:push 
+
 
 echo "Assign Admin Permission set..."
 sfdx force:user:permset:assign -n Kicksaw_UAT_App

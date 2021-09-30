@@ -21,13 +21,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>newUATFeedback.Steps__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Steps_to_recreate</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>newUATFeedback.SubmittedBy__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -53,6 +46,27 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>pageReferenceInfo.jsonInfo</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.Steps__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Steps.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.ExpectedBehavior__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Expected.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>newUATFeedback.Actual_Behavior__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Actual.value</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -104,7 +118,7 @@
         <name>New_UAT_Feedback_Item</name>
         <label>New UAT Feedback Item</label>
         <locationX>444</locationX>
-        <locationY>300</locationY>
+        <locationY>299</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -130,10 +144,82 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Steps_to_recreate</name>
-            <fieldText>Steps to recreate</fieldText>
-            <fieldType>LargeTextArea</fieldType>
+            <name>Expected</name>
+            <extensionName>c:richTextArea</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Expected Behavior</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>placeholder</name>
+                <value>
+                    <stringValue>Enter the expected behavior</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Actual</name>
+            <extensionName>c:richTextArea</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Actual Behavior</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>placeholder</name>
+                <value>
+                    <stringValue>Enter the actual behavior</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Steps</name>
+            <extensionName>c:richTextArea</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Steps to recreate</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>placeholder</name>
+                <value>
+                    <stringValue>Enter the steps to recreate</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
             <name>pageReferenceInfo</name>
