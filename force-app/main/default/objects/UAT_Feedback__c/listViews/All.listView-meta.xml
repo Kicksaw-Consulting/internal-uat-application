@@ -6,6 +6,7 @@
     <columns>Description__c</columns>
     <columns>ObjectName__c</columns>
     <columns>Status__c</columns>
+    <columns>OWNER.ALIAS</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

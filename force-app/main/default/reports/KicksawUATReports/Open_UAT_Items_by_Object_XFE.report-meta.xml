@@ -55,7 +55,7 @@
         <value>1</value>
     </params>
     <reportType>CustomEntity$UAT_Feedback__c</reportType>
-    <scope>user</scope>
+    <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
