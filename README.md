@@ -32,7 +32,7 @@ Use the following instructions for using this application in client orgs for UAT
  
 
 
-<a href="https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/papaflavaflave/Opportunity-Record-Lock">
+<a href="https://githubsfdeploy-sandbox.herokuapp.com/app/githubdeploy/Kicksaw-Consulting/internal-uat-application">
   Deploy to Sandbox
 </a>
 
