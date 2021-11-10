@@ -2,6 +2,45 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>52.0</apiVersion>
     <assignments>
+        <name>Add_Single_Content_Document_Link_to_Collection</name>
+        <label>Add Single Content Document Link to Collection</label>
+        <locationX>327</locationX>
+        <locationY>1264</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentLinks</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varContentDocumentLink</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Content_Document_Ids</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Single_Content_Document_Link</name>
+        <label>Assign Single Content Document Link</label>
+        <locationX>627</locationX>
+        <locationY>1260</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentLink.ContentDocumentId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Content_Document_Ids</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varContentDocumentLink.LinkedEntityId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>newUATFeedback.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Single_Content_Document_Link_to_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Variables</name>
         <label>Assign Variables</label>
         <locationX>504</locationX>
@@ -73,6 +112,28 @@
             <targetReference>Create_UAT_Feedback_Item</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Are_there_files</name>
+        <label>Are there files?</label>
+        <locationX>472</locationX>
+        <locationY>912</locationY>
+        <defaultConnectorLabel>NO</defaultConnectorLabel>
+        <rules>
+            <name>YESfiles</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>inputFileUpload.contentDocumentIds</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Content_Document_Ids</targetReference>
+            </connector>
+            <label>YES</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>choiceUATStatus</name>
         <dataType>Picklist</dataType>
@@ -88,6 +149,20 @@
     </formulas>
     <interviewLabel>Create UAT Feedback Item {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create UAT Feedback Item</label>
+    <loops>
+        <name>Loop_Content_Document_Ids</name>
+        <label>Loop Content Document Ids</label>
+        <locationX>483</locationX>
+        <locationY>1072</locationY>
+        <collectionReference>inputFileUpload.contentDocumentIds</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Single_Content_Document_Link</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Content_Document_Links</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -108,10 +183,20 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <name>Create_Content_Document_Links</name>
+        <label>Create Content Document Links</label>
+        <locationX>761</locationX>
+        <locationY>1084</locationY>
+        <inputReference>varContentDocumentLinks</inputReference>
+    </recordCreates>
+    <recordCreates>
         <name>Create_UAT_Feedback_Item</name>
         <label>Create UAT Feedback Item</label>
         <locationX>657</locationX>
         <locationY>779</locationY>
+        <connector>
+            <targetReference>Are_there_files</targetReference>
+        </connector>
         <inputReference>newUATFeedback</inputReference>
     </recordCreates>
     <screens>
@@ -222,6 +307,32 @@
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
+            <name>inputFileUpload</name>
+            <extensionName>c:fileUploadImproved</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>sessionKey</name>
+                <value>
+                    <elementReference>$Flow.InterviewGuid</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>allowMultiple</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Add a screenshot, recording, or any other file</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
             <name>pageReferenceInfo</name>
             <extensionName>c:currentPageReferenceInfo</extensionName>
             <fieldType>ComponentInstance</fieldType>
@@ -254,5 +365,21 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varContentDocumentLink</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ContentDocumentLink</objectType>
+    </variables>
+    <variables>
+        <name>varContentDocumentLinks</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ContentDocumentLink</objectType>
     </variables>
 </Flow>

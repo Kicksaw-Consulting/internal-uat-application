@@ -8,6 +8,10 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -18,6 +22,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ExpectedResult__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>StartRecordId__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -74,7 +82,7 @@
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Owner.CUSTENT_OWNER_NAME</fields>
+        <fields>TestRun__c.Tester__c</fields>
         <fields>Result__c</fields>
         <fields>Comments__c</fields>
         <relatedList>TestRunCase__c.TestCase__c</relatedList>
