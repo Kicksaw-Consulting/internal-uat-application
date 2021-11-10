@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
         <name>Convert_a_multiselect_value_to_a_collection</name>
         <label>Convert a multiselect value to a collection</label>
-        <locationX>256</locationX>
+        <locationX>456</locationX>
         <locationY>708</locationY>
         <actionName>multiselectToCollection</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>loopTestCaseIds</targetReference>
+            <targetReference>Clear_Variables</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -26,13 +26,13 @@
     <assignments>
         <name>Add_Single_Test_Run_Case_to_Collection</name>
         <label>Add Single Test Run Case to Collection</label>
-        <locationX>50</locationX>
+        <locationX>250</locationX>
         <locationY>553</locationY>
         <assignmentItems>
-            <assignToReference>varTestRunCases</assignToReference>
+            <assignToReference>varTestRunCases_Create</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>varTestRunCase</elementReference>
+                <elementReference>varTestRunCase_Create</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -40,26 +40,155 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Add_Single_Test_Run_Case_to_Collection_Start</name>
+        <label>Add Single Test Run Case to Collection</label>
+        <locationX>958</locationX>
+        <locationY>1130</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunCases_Start_ToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varTestRunCase_Start_ToUpdate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loopTestRunCases</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Single_Test_Run_Case</name>
         <label>Assign Single Test Run Case</label>
         <locationX>50</locationX>
-        <locationY>344</locationY>
+        <locationY>429</locationY>
         <assignmentItems>
-            <assignToReference>varTestRunCase.TestCase__c</assignToReference>
+            <assignToReference>varTestRunCase_Create.TestCase__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>loopTestCaseIds</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varTestRunCase.TestRun__c</assignToReference>
+            <assignToReference>varTestRunCase_Create.TestRun__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>varTestRun</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCase_Create.RunOrder__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTestRunCaseCounter</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_Single_Test_Run_Case_to_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Single_Test_Run_Case_Start</name>
+        <label>Assign Single Test Run Case</label>
+        <locationX>1023</locationX>
+        <locationY>1305</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunCase_Start_ToUpdate.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>loopTestRunCases.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCase_Start_ToUpdate.Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inputComments.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCase_Start_ToUpdate.Result__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>inputActualResult</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCase_Start_ToUpdate.IsCompleted__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Single_Test_Run_Case_to_Collection_Start</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Clear_Variables</name>
+        <label>Clear Variables</label>
+        <locationX>452</locationX>
+        <locationY>572</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunCaseCounter</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>loopTestCaseIds</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>End_of_Loop_Reset_1</name>
+        <label>End of Loop Reset</label>
+        <locationX>780</locationX>
+        <locationY>430</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunConfirmation</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCases_Create</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Test_Cases_or_perform_your_Test_Run</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>End_of_Loop_Reset_2</name>
+        <label>End of Loop Reset</label>
+        <locationX>1291</locationX>
+        <locationY>560</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunCases_Start_ToUpdate</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTestRunCases_Start</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>varTestRun_checkForNull</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Test_Case_Run_Counter_1</name>
+        <label>Test Case Run Counter +1</label>
+        <locationX>248</locationX>
+        <locationY>274</locationY>
+        <assignmentItems>
+            <assignToReference>varTestRunCaseCounter</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Single_Test_Run_Case</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -81,8 +210,11 @@
     <decisions>
         <name>Does_the_User_have_permission_to_Create_Test_Run_Cases_in_Flow</name>
         <label>Does the User have permission to Create Test Run Cases in Flow</label>
-        <locationX>821</locationX>
+        <locationX>1021</locationX>
         <locationY>199</locationY>
+        <defaultConnector>
+            <targetReference>varTestRun_checkForNull</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>NO</defaultConnectorLabel>
         <rules>
             <name>YEScreateTestRunCases</name>
@@ -101,10 +233,32 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_there_at_least_one_Test_Run_record</name>
+        <label>Is there at least one Test Run record?</label>
+        <locationX>1137</locationX>
+        <locationY>773</locationY>
+        <defaultConnectorLabel>END FLOW</defaultConnectorLabel>
+        <rules>
+            <name>YESoneTestRunRecord</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTestRun_checkForNull</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>varTestRunCases_Start</targetReference>
+            </connector>
+            <label>YES</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>What_do_you_want_to_do</name>
         <label>What do you want to do?</label>
-        <locationX>706</locationX>
-        <locationY>565</locationY>
+        <locationX>897</locationX>
+        <locationY>576</locationY>
         <defaultConnectorLabel>N/A</defaultConnectorLabel>
         <rules>
             <name>Create_Test_Run</name>
@@ -131,6 +285,9 @@
                     <stringValue>start</stringValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>varTestRun_checkForNull</targetReference>
+            </connector>
             <label>Start a Test Run</label>
         </rules>
     </decisions>
@@ -140,6 +297,38 @@
         <displayField>Name</displayField>
         <object>TestCase__c</object>
         <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>choiceTestRuns</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Tester__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Not Complete</stringValue>
+            </value>
+        </filters>
+        <object>TestRun__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>pklstResult</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Result__c</picklistField>
+        <picklistObject>TestRunCase__c</picklistObject>
     </dynamicChoiceSets>
     <formulas>
         <name>fxCanCreateTestRunCasesinFlow</name>
@@ -151,15 +340,29 @@
     <loops>
         <name>loopTestCaseIds</name>
         <label>Loop Test Case Ids</label>
-        <locationX>252</locationX>
+        <locationX>452</locationX>
         <locationY>432</locationY>
         <collectionReference>varTestCaseIds</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Assign_Single_Test_Run_Case</targetReference>
+            <targetReference>Test_Case_Run_Counter_1</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Create_Test_Run_Cases</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>loopTestRunCases</name>
+        <label>Loop Test Run Cases</label>
+        <locationX>1148</locationX>
+        <locationY>1042</locationY>
+        <collectionReference>varTestRunCases_Start</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>varTestCase</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Test_Run_Cases</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -184,34 +387,146 @@
     <recordCreates>
         <name>Create_Test_Run_Cases</name>
         <label>Create Test Run Cases</label>
-        <locationX>497</locationX>
-        <locationY>426</locationY>
+        <locationX>641</locationX>
+        <locationY>430</locationY>
         <connector>
-            <targetReference>Create_Test_Cases_or_perform_your_Test_Run</targetReference>
+            <targetReference>End_of_Loop_Reset_1</targetReference>
         </connector>
-        <inputReference>varTestRunCases</inputReference>
+        <inputReference>varTestRunCases_Create</inputReference>
     </recordCreates>
     <recordCreates>
         <name>varTestRun</name>
         <label>Create Test Run</label>
-        <locationX>400</locationX>
+        <locationX>600</locationX>
         <locationY>708</locationY>
         <connector>
             <targetReference>Convert_a_multiselect_value_to_a_collection</targetReference>
         </connector>
         <inputAssignments>
-            <field>OwnerId</field>
+            <field>Tester__c</field>
             <value>
-                <elementReference>inputOwnerTestRun.recordId</elementReference>
+                <elementReference>inputTester.recordId</elementReference>
             </value>
         </inputAssignments>
         <object>TestRun__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordLookups>
+        <name>varTestCase</name>
+        <label>Get Test Case</label>
+        <locationX>1321</locationX>
+        <locationY>1242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Test_Case_Run_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>loopTestRunCases.TestCase__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>TestCase__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>varTestRun_checkForNull</name>
+        <label>Get Test Run</label>
+        <locationX>1144</locationX>
+        <locationY>482</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Select_Test_Runs</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Tester__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Not Complete</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>TestRun__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>varTestRunCases_Start</name>
+        <label>Get Test Run Cases</label>
+        <locationX>1145</locationX>
+        <locationY>917</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>loopTestRunCases</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TestRun__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputTestRun</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>TestRunCase__c</object>
+        <sortField>RunOrder__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Test_Run</name>
+        <label>Update Test Run</label>
+        <locationX>1441</locationX>
+        <locationY>636</locationY>
+        <connector>
+            <targetReference>End_of_Loop_Reset_2</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputTestRun</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>RunDateTime__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Complete</stringValue>
+            </value>
+        </inputAssignments>
+        <object>TestRun__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Test_Run_Cases</name>
+        <label>Update Test Run Cases</label>
+        <locationX>1441</locationX>
+        <locationY>873</locationY>
+        <connector>
+            <targetReference>Update_Test_Run</targetReference>
+        </connector>
+        <inputReference>varTestRunCases_Start_ToUpdate</inputReference>
+    </recordUpdates>
     <screens>
         <name>Create_Test_Cases_or_perform_your_Test_Run</name>
         <label>Create Test Cases or perform your Test Run</label>
-        <locationX>705</locationX>
+        <locationX>905</locationX>
         <locationY>425</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -219,6 +534,21 @@
         <connector>
             <targetReference>What_do_you_want_to_do</targetReference>
         </connector>
+        <fields>
+            <name>pTestRunCreated</name>
+            <fieldText>&lt;p&gt;&lt;i style=&quot;color: rgb(41, 169, 13);&quot;&gt;Test Run Created&lt;/i&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>varTestRunConfirmation</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
         <fields>
             <name>inputWhatToDo</name>
             <choiceReferences>choiceCreateTestRun</choiceReferences>
@@ -234,7 +564,7 @@
     <screens>
         <name>Select_Test_Cases</name>
         <label>Select Test Cases</label>
-        <locationX>539</locationX>
+        <locationX>739</locationX>
         <locationY>707</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -243,7 +573,7 @@
             <targetReference>varTestRun</targetReference>
         </connector>
         <fields>
-            <name>inputOwnerTestRun</name>
+            <name>inputTester</name>
             <extensionName>flowruntime:lookup</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
@@ -255,7 +585,7 @@
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Who is assigned to Run the Test Cases?</stringValue>
+                    <stringValue>Who is assigned to the Test Run?</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -291,8 +621,112 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
+    <screens>
+        <name>Select_Test_Runs</name>
+        <label>Select Test Runs</label>
+        <locationX>1144</locationX>
+        <locationY>630</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Is_there_at_least_one_Test_Run_record</targetReference>
+        </connector>
+        <fields>
+            <name>pNoMoreTestRuns</name>
+            <fieldText>&lt;p&gt;You have completed all of your Test Runs!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>varTestRun_checkForNull.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>inputTestRun</name>
+            <choiceReferences>choiceTestRuns</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select Test Run</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>varTestRun_checkForNull.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Test_Case_Run_Screen</name>
+        <label>Test Case Run Screen</label>
+        <locationX>1219</locationX>
+        <locationY>1370</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Single_Test_Run_Case_Start</targetReference>
+        </connector>
+        <fields>
+            <name>h2Description</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;{!varTestCase.Name}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>pStepsToComplete</name>
+            <fieldText>&lt;p&gt;&lt;i&gt;&lt;u&gt;Steps to Complete&lt;/u&gt;&lt;/i&gt;&lt;/p&gt;&lt;p&gt;{!varTestCase.StepstoComplete__c}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>pExpectedResult</name>
+            <fieldText>&lt;p&gt;&lt;i&gt;&lt;u&gt;Expected Result&lt;/u&gt;&lt;/i&gt;&lt;/p&gt;&lt;p&gt;{!varTestCase.ExpectedResult__c}&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>inputActualResult</name>
+            <choiceReferences>pklstResult</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Actual Result</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>inputComments</name>
+            <extensionName>c:richTextArea</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Comments</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
-        <locationX>703</locationX>
+        <locationX>903</locationX>
         <locationY>48</locationY>
         <connector>
             <targetReference>Does_the_User_have_permission_to_Create_Test_Run_Cases_in_Flow</targetReference>
@@ -307,7 +741,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>varTestRunCase</name>
+        <name>varTestRunCase_Create</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -315,11 +749,48 @@
         <objectType>TestRunCase__c</objectType>
     </variables>
     <variables>
-        <name>varTestRunCases</name>
+        <name>varTestRunCase_Start_ToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>TestRunCase__c</objectType>
+    </variables>
+    <variables>
+        <name>varTestRunCaseCounter</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>varTestRunCases_Create</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>TestRunCase__c</objectType>
+    </variables>
+    <variables>
+        <name>varTestRunCases_Start_ToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>TestRunCase__c</objectType>
+    </variables>
+    <variables>
+        <name>varTestRunConfirmation</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
 </Flow>

@@ -21,6 +21,10 @@
                 <behavior>Required</behavior>
                 <field>TestRun__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RunOrder__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
