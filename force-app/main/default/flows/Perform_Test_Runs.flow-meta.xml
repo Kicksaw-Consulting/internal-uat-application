@@ -26,6 +26,37 @@
         </outputParameters>
     </actionCalls>
     <actionCalls>
+        <name>Navigate_to_Test_Run</name>
+        <label>Navigate to Test Run</label>
+        <locationX>1290</locationX>
+        <locationY>664</locationY>
+        <actionName>c:navigateEverywhereLFA</actionName>
+        <actionType>component</actionType>
+        <connector>
+            <targetReference>varTestRun_checkForNull</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>destinationAction</name>
+            <value>
+                <stringValue>view</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>destinationRecordId</name>
+            <value>
+                <elementReference>varTestRun</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>destinationType</name>
+            <value>
+                <stringValue>record</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Redirect_to_Start_URL</name>
         <label>Redirect to Start URL</label>
         <locationX>1395</locationX>
@@ -152,7 +183,7 @@
             <operator>Assign</operator>
         </assignmentItems>
         <connector>
-            <targetReference>varTestRun_checkForNull</targetReference>
+            <targetReference>Navigate_to_Test_Run</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -527,6 +558,31 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <description>Update the test case with the most recent run results.</description>
+        <name>Update_Test_Case</name>
+        <label>Update Test Case</label>
+        <locationX>1055</locationX>
+        <locationY>1381</locationY>
+        <connector>
+            <targetReference>loopTestRunCases</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>loopTestRunCases.TestCase__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Most_Recent_Run_Result__c</field>
+            <value>
+                <elementReference>inputActualResult</elementReference>
+            </value>
+        </inputAssignments>
+        <object>TestCase__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Test_Run</name>
         <label>Update Test Run</label>
         <locationX>1483</locationX>
@@ -565,7 +621,7 @@
         <locationX>1021</locationX>
         <locationY>1485</locationY>
         <connector>
-            <targetReference>loopTestRunCases</targetReference>
+            <targetReference>Update_Test_Case</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

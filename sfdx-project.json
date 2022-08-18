@@ -4,23 +4,15 @@
             "path": "force-app",
             "default": true,
             "package": "Kicksaw UAT App",
-            "versionName": "Beta - Winter '21",
+            "versionName": "Release 1",
             "versionDescription": "Beta of the Kicksaw UAT App",
             "versionNumber": "1.1.1.NEXT",
-            "definitionFile": "config/scratch-org-def.json",
-            "dependencies": [
-                {
-                    "package": "Navigate Everywhere"
-                },
-                {
-                    "package": "File Upload Improved"
-                }
-            ]
+            "definitionFile": "config/scratch-org-def.json"
         }
     ],
     "packageAliases": {
         "Navigate Everywhere": "04t5G000003rUhrQAE",
-        "File Upload Improved": "04t5G000003rUnHQAU",
+        "File Upload Improved": "04t5G000003rUtjQAE",
         "Kicksaw UAT App": "0Ho5f0000008OZnCAM",
         "Kicksaw UAT App@1.1.1-1": "04t5f000000ufsgAAA",
         "Kicksaw UAT App@1.1.1-2": "04t5f000000uwMbAAI"
@@ -28,5 +20,5 @@
     "name": "Kicksaw-UAT-Application",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "51.0"
+    "sourceApiVersion": "55.0"
 }

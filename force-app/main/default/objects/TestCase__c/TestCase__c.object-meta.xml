@@ -160,7 +160,12 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Test Cases</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Most_Recent_Run_Result__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Fail_Percentage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Pass_Percentage__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
