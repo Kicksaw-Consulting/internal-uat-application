@@ -46,6 +46,7 @@
                     <value>600</value>
                 </componentInstanceProperties>
                 <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -92,6 +93,7 @@
                     <value>600</value>
                 </componentInstanceProperties>
                 <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview2</identifier>
             </componentInstance>
         </itemInstances>
         <name>utilityItems</name>

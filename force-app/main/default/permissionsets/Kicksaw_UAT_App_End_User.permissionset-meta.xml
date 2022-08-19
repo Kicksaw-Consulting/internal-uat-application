@@ -19,6 +19,36 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Fail_Percentage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Most_Recent_Run_Result__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Number_of_Failed_Test_Runs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Number_of_Incomplete_Test_Runs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Number_of_Passed_Test_Runs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Pass_Percentage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>TestCase__c.StartRecordId__c</field>
         <readable>true</readable>
@@ -31,6 +61,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>TestCase__c.StepstoComplete__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Total_Completed_Test_Runs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TestCase__c.Total_Number_of_Test_Runs__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
