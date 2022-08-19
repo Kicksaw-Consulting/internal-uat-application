@@ -23,7 +23,7 @@ sfdx force:org:open
 
 echo "Installing dependencies... \n"
 echo "File Upload Improved... \n"
-sfdx force:package:install --package 04t5G000003rUnHQAU --wait 1000
+sfdx force:package:install --package 04t5G000003rUtjQAE --wait 1000
 echo "Navigate Everywhere... \n"
 sfdx force:package:install --package 04t5G000003rUhrQAE --wait 1000
 
