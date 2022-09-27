@@ -21,6 +21,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Kicksaw_UAT_Setting__mdt.TaskRay_Project_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>TestCase__c.ExpectedResult__c</field>
         <readable>false</readable>
     </fieldPermissions>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TaskRay_Project_ID__c</fullName>
+    <description>This hold holds the ID of the TaskRay Project in the Kicksaw Internal Org.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>This hold holds the ID of the TaskRay Project in the Kicksaw Internal Org.</inlineHelpText>
+    <label>TaskRay Project ID</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

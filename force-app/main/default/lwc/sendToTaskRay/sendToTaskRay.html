@@ -1,0 +1,14 @@
+<template>
+    <lightning-layout>
+        <div class="slds-p-around_small">
+            <lightning-button variant="standard" 
+                label="Send to TaskRay"
+                onclick={handleClick}>
+            </lightning-button>
+            <br>
+            <template if:true={loadingSpinner}>
+                <lightning-spinner alternative-text="Loading" variant="inverse" size="medium"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-layout>
+</template>
