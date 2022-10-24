@@ -342,7 +342,7 @@
         <limit>200</limit>
         <object>TestCase__c</object>
         <sortField>CreatedDate</sortField>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
@@ -377,6 +377,7 @@
         <picklistField>Result__c</picklistField>
         <picklistObject>TestRunCase__c</picklistObject>
     </dynamicChoiceSets>
+    <environments>Default</environments>
     <formulas>
         <name>fxCanCreateTestRunCasesinFlow</name>
         <dataType>Boolean</dataType>
