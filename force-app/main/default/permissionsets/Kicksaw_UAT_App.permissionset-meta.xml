@@ -124,6 +124,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>UAT_Feedback__c.Needed_for_Go_Live__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>UAT_Feedback__c.ObjectName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -160,6 +165,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UAT_Feedback__c.TaskRayTicket__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UAT_Feedback__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
