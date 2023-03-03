@@ -40,7 +40,7 @@
     </assignments>
     <environments>Default</environments>
     <interviewLabel>Screen Flow - New Test Case {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Screen Flow - New Test Case</label>
+    <label>New Test Case</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
