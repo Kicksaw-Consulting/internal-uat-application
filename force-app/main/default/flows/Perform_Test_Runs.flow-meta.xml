@@ -45,7 +45,7 @@
         <inputParameters>
             <name>destinationRecordId</name>
             <value>
-                <elementReference>varTestRun</elementReference>
+                <elementReference>inputTestRun</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
