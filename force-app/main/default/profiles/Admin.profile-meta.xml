@@ -6,6 +6,14 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>FieldSelectorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FieldSelectorControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>multiselectToCollection</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -125,9 +133,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>UAT_Feedback__c.Needed_for_Go_Live__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -170,15 +178,12 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>UAT_Feedback__c.Type__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <layoutAssignments>
         <layout>Kicksaw_UAT_Setting__mdt-Kicksaw UAT Setting Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>TestCase__c-Test Case Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>TestRunCase__c-Test Run Case Layout</layout>

@@ -2,49 +2,10 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>52.0</apiVersion>
     <assignments>
-        <name>Add_Single_Content_Document_Link_to_Collection</name>
-        <label>Add Single Content Document Link to Collection</label>
-        <locationX>327</locationX>
-        <locationY>1264</locationY>
-        <assignmentItems>
-            <assignToReference>varContentDocumentLinks</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>varContentDocumentLink</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Content_Document_Ids</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Single_Content_Document_Link</name>
-        <label>Assign Single Content Document Link</label>
-        <locationX>627</locationX>
-        <locationY>1260</locationY>
-        <assignmentItems>
-            <assignToReference>varContentDocumentLink.ContentDocumentId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Content_Document_Ids</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varContentDocumentLink.LinkedEntityId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>newUATFeedback.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_Single_Content_Document_Link_to_Collection</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Assign_Variables</name>
         <label>Assign Variables</label>
-        <locationX>504</locationX>
-        <locationY>532</locationY>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
         <assignmentItems>
             <assignToReference>newUATFeedback.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -112,28 +73,6 @@
             <targetReference>Create_UAT_Feedback_Item</targetReference>
         </connector>
     </assignments>
-    <decisions>
-        <name>Are_there_files</name>
-        <label>Are there files?</label>
-        <locationX>472</locationX>
-        <locationY>912</locationY>
-        <defaultConnectorLabel>NO</defaultConnectorLabel>
-        <rules>
-            <name>YESfiles</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>inputFileUpload.contentDocumentIds</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Loop_Content_Document_Ids</targetReference>
-            </connector>
-            <label>YES</label>
-        </rules>
-    </decisions>
     <dynamicChoiceSets>
         <name>choiceUATStatus</name>
         <dataType>Picklist</dataType>
@@ -142,6 +81,7 @@
         <picklistField>Status__c</picklistField>
         <picklistObject>UAT_Feedback__c</picklistObject>
     </dynamicChoiceSets>
+    <environments>Default</environments>
     <formulas>
         <name>currentUser</name>
         <dataType>String</dataType>
@@ -149,20 +89,6 @@
     </formulas>
     <interviewLabel>Create UAT Feedback Item {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create UAT Feedback Item</label>
-    <loops>
-        <name>Loop_Content_Document_Ids</name>
-        <label>Loop Content Document Ids</label>
-        <locationX>483</locationX>
-        <locationY>1072</locationY>
-        <collectionReference>inputFileUpload.contentDocumentIds</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Assign_Single_Content_Document_Link</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Create_Content_Document_Links</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -172,7 +98,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -183,27 +109,17 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
-        <name>Create_Content_Document_Links</name>
-        <label>Create Content Document Links</label>
-        <locationX>761</locationX>
-        <locationY>1084</locationY>
-        <inputReference>varContentDocumentLinks</inputReference>
-    </recordCreates>
-    <recordCreates>
         <name>Create_UAT_Feedback_Item</name>
         <label>Create UAT Feedback Item</label>
-        <locationX>657</locationX>
-        <locationY>779</locationY>
-        <connector>
-            <targetReference>Are_there_files</targetReference>
-        </connector>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
         <inputReference>newUATFeedback</inputReference>
     </recordCreates>
     <screens>
         <name>New_UAT_Feedback_Item</name>
         <label>New UAT Feedback Item</label>
-        <locationX>444</locationX>
-        <locationY>299</locationY>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -307,25 +223,19 @@
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
-            <name>inputFileUpload</name>
-            <extensionName>c:fileUploadImproved</extensionName>
+            <name>fileUpload</name>
+            <extensionName>forceContent:fileUpload</extensionName>
             <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>sessionKey</name>
-                <value>
-                    <elementReference>$Flow.InterviewGuid</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>allowMultiple</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
             <inputParameters>
                 <name>label</name>
                 <value>
                     <stringValue>Add a screenshot, recording, or any other file</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>newUATFeedback.Id</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -345,7 +255,7 @@
     </screens>
     <start>
         <locationX>50</locationX>
-        <locationY>50</locationY>
+        <locationY>0</locationY>
         <connector>
             <targetReference>New_UAT_Feedback_Item</targetReference>
         </connector>

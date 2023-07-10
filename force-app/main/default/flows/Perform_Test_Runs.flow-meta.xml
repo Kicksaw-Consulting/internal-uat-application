@@ -440,8 +440,8 @@
     <recordCreates>
         <name>Create_Test_Run_Cases</name>
         <label>Create Test Run Cases</label>
-        <locationX>641</locationX>
-        <locationY>430</locationY>
+        <locationX>663</locationX>
+        <locationY>336</locationY>
         <connector>
             <targetReference>End_of_Loop_Reset_1</targetReference>
         </connector>
@@ -866,38 +866,6 @@
                 <name>label</name>
                 <value>
                     <stringValue>Comments</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <fields>
-            <name>inputFileUpload</name>
-            <extensionName>c:fileUploadImproved</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>sessionKey</name>
-                <value>
-                    <elementReference>fxFileUploadUniqueId</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>allowMultiple</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Add a screenshot, recording, or any other file</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>recordId</name>
-                <value>
-                    <elementReference>loopTestRunCases.Id</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>

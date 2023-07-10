@@ -5,10 +5,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>FileUploadImprovedHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>multiselectToCollection</apexClass>
         <enabled>true</enabled>
     </classAccesses>
