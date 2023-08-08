@@ -9,6 +9,6 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/New_Test_Run_Assignment</template>
+        <template>Kicksaw_UAT/New_Test_Run_Assignment</template>
     </alerts>
 </Workflow>
