@@ -4,16 +4,18 @@
       "path": "force-app",
       "default": true,
       "package": "Kicksaw UAT App",
-      "versionName": "ver 0.1",
+      "versionName": "ver 0.2",
       "versionDescription": "Kicksaw UAT App",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "0.2.0.NEXT",
       "definitionFile": "config/scratch-org-def.json"
     }
   ],
   "packageAliases": {
     "Kicksaw UAT App": "0Ho8b0000004CDUCA2",
     "Kicksaw UAT App@0.1.0-1": "04t8b000000jt7KAAQ",
-    "Kicksaw UAT App@0.1.0-2": "04t8b000000jt7PAAQ"
+    "Kicksaw UAT App@0.1.0-2": "04t8b000000jt7PAAQ",
+    "Kicksaw UAT App@0.1.0-3": "04t8b000000jt7eAAA",
+    "Kicksaw UAT App@0.2.0-1": "04t8b000000jt7jAAA"
   },
   "name": "Kicksaw-UAT-Application",
   "namespace": "",
