@@ -2,10 +2,41 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
     <assignments>
+        <name>Assign_Previous_Values</name>
+        <label>Assign Previous Values</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>varDescription</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Description</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varExpectedResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>expectedResult.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varStepsToComplete</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>stepsToComplete.value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>New_Test_Case</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Test_Case_Variables</name>
         <label>Assign Test Case Variables</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
         <assignmentItems>
             <assignToReference>varNewUATTestCase.ExpectedResult__c</assignToReference>
             <operator>Assign</operator>
@@ -38,6 +69,29 @@
             <targetReference>Create_Test_Case</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <description>If the user chose to Save and Clone, we&apos;ll redirect them to a new screen flow</description>
+        <name>Save_and_Clone</name>
+        <label>Save and Clone</label>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Save_and_Clone</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>cloneTestCase.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Previous_Values</targetReference>
+            </connector>
+            <label>Yes - Save and Clone</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>Screen Flow - New Test Case {!$Flow.CurrentDateTime}</interviewLabel>
     <label>New Test Case</label>
@@ -63,15 +117,18 @@
     <recordCreates>
         <name>Create_Test_Case</name>
         <label>Create Test Case</label>
-        <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <connector>
+            <targetReference>Save_and_Clone</targetReference>
+        </connector>
         <inputReference>varNewUATTestCase</inputReference>
     </recordCreates>
     <screens>
         <name>New_Test_Case</name>
         <label>New Test Case</label>
-        <locationX>176</locationX>
-        <locationY>158</locationY>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -81,6 +138,9 @@
         <fields>
             <name>Description</name>
             <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>varDescription</elementReference>
+            </defaultValue>
             <fieldText>Description</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
@@ -99,6 +159,12 @@
                 <name>placeholder</name>
                 <value>
                     <stringValue>What are the steps to complete this? </stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>varStepsToComplete</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -121,6 +187,38 @@
                     <stringValue>What is the expected result? </stringValue>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <elementReference>varExpectedResult</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>cloneTestCase</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Clone and New?</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>Clone Values</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>Do Not Clone</stringValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -129,7 +227,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>New_Test_Case</targetReference>
@@ -137,11 +235,32 @@
     </start>
     <status>Active</status>
     <variables>
+        <name>varDescription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varExpectedResult</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>varNewUATTestCase</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>TestCase__c</objectType>
+    </variables>
+    <variables>
+        <name>varStepsToComplete</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
 </Flow>
