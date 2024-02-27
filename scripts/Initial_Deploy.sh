@@ -32,6 +32,7 @@ sfdx force:source:push
 
 echo "Assign Admin Permission set..."
 sfdx force:user:permset:assign -n Kicksaw_UAT_App
+sf data import tree --files data/TestCase__c.json
 
 osascript -e 'display notification "Build is complete" with title "Build Status" sound name "Glass"'
 
