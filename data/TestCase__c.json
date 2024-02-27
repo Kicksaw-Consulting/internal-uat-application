@@ -1,0 +1,54 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "TestCase__c",
+                "referenceId": "TestCase__cRef1"
+            },
+            "Name": "Verify creation of a new account",
+            "ExpectedResult__c": "<p><span style=\"font-size: 16px;\">The new account should be successfully created and saved without any errors.</span></p>",
+            "Status__c": "Not Complete",
+            "StepstoComplete__c": "<ol><li>Log in to Salesforce.</li><li>Navigate to the Accounts tab.</li><li>Click on the &quot;New&quot; button to create a new account.</li><li>Fill in the required fields such as Account Name, Account Number, and Account Owner.</li><li>Click on the &quot;Save&quot; button to save the new account.</li></ol>"
+        },
+        {
+            "attributes": {
+                "type": "TestCase__c",
+                "referenceId": "TestCase__cRef2"
+            },
+            "Name": "Verify editing an existing contact details",
+            "ExpectedResult__c": "<p><span style=\"font-size: 16px;\">The contact details should be successfully updated and saved without any issues.</span></p>",
+            "Status__c": "Not Complete",
+            "StepstoComplete__c": "<ol><li>Log in to Salesforce.</li><li>Navigate to the Contacts tab.</li><li>Select an existing contact from the list.</li><li>Click on the &quot;Edit&quot; button to modify contact details.</li><li>Update the contact information such as email, phone number, and address.</li><li>Click on the &quot;Save&quot; button to save the changes.</li></ol><p><br></p>"
+        },
+        {
+            "attributes": {
+                "type": "TestCase__c",
+                "referenceId": "TestCase__cRef3"
+            },
+            "Name": "Verify searching for an account",
+            "ExpectedResult__c": "<p><span style=\"font-size: 16px;\">The system should display search results matching the entered account name, if any, allowing the user to easily locate the desired account.</span></p>",
+            "Status__c": "Not Complete",
+            "StepstoComplete__c": "<ol><li>Log in to Salesforce.</li><li>Navigate to the Accounts tab.</li><li>Locate the search bar at the top of the page.</li><li>Enter the name of an existing account into the search bar.</li><li>Press the Enter key or click on the search icon.</li></ol><p><br></p>"
+        },
+        {
+            "attributes": {
+                "type": "TestCase__c",
+                "referenceId": "TestCase__cRef4"
+            },
+            "Name": "Verify deletion of a task",
+            "ExpectedResult__c": "<p><span style=\"font-size: 16px;\">The selected task should be successfully deleted from the system without any errors.</span></p>",
+            "Status__c": "Not Complete",
+            "StepstoComplete__c": "<ol><li>Log in to Salesforce.</li><li>Navigate to the Tasks tab.</li><li>Select an existing task from the list.</li><li>Click on the &quot;Delete&quot; button to remove the selected task.</li><li>Confirm the deletion when prompted.</li></ol><p><br></p>"
+        },
+        {
+            "attributes": {
+                "type": "TestCase__c",
+                "referenceId": "TestCase__cRef5"
+            },
+            "Name": "Creating a New Opportunity",
+            "ExpectedResult__c": "<p><span style=\"font-size: 16px;\">The new opportunity should be successfully created and saved without any errors.</span></p>",
+            "Status__c": "Not Complete",
+            "StepstoComplete__c": "<ol><li>Log in to Salesforce.</li><li>Navigate to the Opportunities tab.</li><li>Click on the &quot;New&quot; button to create a new opportunity.</li><li>Fill in the required fields such as Opportunity Name, Close Date, Stage, and Amount.</li><li>Associate the opportunity with an existing account and contact.</li><li>Click on the &quot;Save&quot; button to save the new opportunity.</li></ol><p><br></p>"
+        }
+    ]
+}
