@@ -15,6 +15,11 @@
     <description>Admin access to the UAT feedback app and objects.</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>TestCase__c.Epic_Feature__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>TestCase__c.ExpectedResult__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -50,6 +55,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>TestCase__c.Persona__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>TestCase__c.Pre_Condition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>TestCase__c.Sprint__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>TestCase__c.StartRecordId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -61,6 +81,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>TestCase__c.StepstoComplete__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>TestCase__c.Ticket_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
