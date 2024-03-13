@@ -2,7 +2,7 @@ name: Pull Request to Develop
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ dev ]
 
 jobs:
   validate_pull_request:
