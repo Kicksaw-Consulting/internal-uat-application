@@ -28,7 +28,7 @@ jobs:
 
     - name: Create new version
       run: |
-        sfdx force:package:version:create -x -p "Spaghetti CMD" -w 60 --codecoverage
+        sfdx force:package:version:create -x -p "Kicksaw UAT App" -w 60 --codecoverage
         new_version_id=$(grep -o "04t[[:alnum:]]\{15\}" sfdx-project.json | tail -n1)
         echo "version_id=${new_version_id}" >> $GITHUB_ENV
     
