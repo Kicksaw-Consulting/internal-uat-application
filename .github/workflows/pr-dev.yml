@@ -34,7 +34,7 @@ jobs:
     
     - name: Push source to scratch org
       run: |
-      sfdx force:source:push
+        sfdx force:source:push
     
     - name: Check code coverage
       run: |
