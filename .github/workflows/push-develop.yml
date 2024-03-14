@@ -41,7 +41,6 @@ jobs:
     
     - name: Install new version in Dev Hub
       run: |
-    ##    sfdx force:package:install -p "$version_id" -u devhub --wait 10 --publishwait 10
         sfdx force:package:install -p "$version_id" -u ci_scratch --wait 10 --publishwait 10
     
     - name: Store new version id
