@@ -43,4 +43,4 @@ jobs:
     
     - name: Delete scratch org
       if: always()
-      run: 'sfdx force:org:delete -p -u ci_scratch'
+      run: 'sf org delete scratch -p -o ci_scratch'
