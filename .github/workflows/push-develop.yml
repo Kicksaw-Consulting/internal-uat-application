@@ -35,9 +35,14 @@ jobs:
       run: |
         test $(sfdx force:package:version:report -p "$version_id" --json | jq .result.HasPassedCodeCoverageCheck) = 'true'
     
+    - name: Create scratch org
+      run: |
+        sfdx force:org:create -f config/scratch-org-def.json -a ci_scratch -s -d 1
+    
     - name: Install new version in Dev Hub
       run: |
-        sfdx force:package:install -p "$version_id" -u devhub --wait 10 --publishwait 10
+    ##    sfdx force:package:install -p "$version_id" -u devhub --wait 10 --publishwait 10
+        sfdx force:package:install -p "$version_id" -u ci_scratch --wait 10 --publishwait 10
     
     - name: Store new version id
       run: |
