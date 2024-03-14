@@ -14,10 +14,7 @@ jobs:
 
     - name: Install Salesforce CLI
       run: |
-        wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-        mkdir sfdx-cli
-        tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-        ./sfdx-cli/install
+        npm install --global sfdx-cli
     
     - name: Install jq
       run: |
@@ -25,10 +22,12 @@ jobs:
     
     - name: Populate auth file
       shell: bash
-      run: 'echo ${{secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
+      run: |
+        echo ${{secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
     
     - name: Authenticate Dev Hub
-      run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+      run: |
+        sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d
 
     - name: Promote latest version
       run: |
