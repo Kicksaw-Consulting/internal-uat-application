@@ -1,0 +1,135 @@
+<template>
+    <lightning-card title="Create Test Run" icon-name="custom:custom63">
+        <div slot="actions" class="slds-grid slds-grid_vertical-align-center">
+            <span class="slds-p-right_x-small">Click to refresh list of test cases</span>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                variant="border-filled"
+                alternative-text="Refresh Test Cases"
+                title="Refresh Test Cases"
+                onclick={handleRefresh}>
+            </lightning-button-icon>
+        </div>
+        
+        <div class="slds-p-around_medium">
+            <!-- Step 1: Select Test Cases -->
+            <template if:true={isStep1}>
+                <div class="slds-p-top_medium">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={testCases}
+                        columns={columns}
+                        selected-rows={selectedTestCaseIds}
+                        onrowselection={handleRowSelection}
+                        is-multi-select="true"
+                    ></lightning-datatable>
+                </div>
+            </template>
+
+            <!-- Step 2: Order Test Cases -->
+            <template if:true={isStep2}>
+                <div class="slds-text-body_regular slds-p-top_large slds-p-bottom_medium slds-text-align_center">
+                    Drag and drop the test cases below to set the order in which they should be performed.
+                </div>
+                <c-reorder-test-cases
+                    test-cases={selectedTestCases}
+                ></c-reorder-test-cases>
+            </template>
+
+            <!-- Step 3: Assign Testers -->
+            <template if:true={isStep3}>
+                <div class="slds-p-top_medium">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <lightning-input
+                                label="Search Users"
+                                placeholder="Search users..."
+                                type="search"
+                                value={searchTerm}
+                                onkeyup={handleUserSearch}
+                            ></lightning-input>
+                        </div>
+                    </div>
+
+                    <!-- Selected Testers List -->
+                    <div class="slds-p-top_medium">
+                        <template if:true={selectedTesters.length}>
+                            <div class="slds-box slds-theme_default">
+                                <h3 class="slds-text-heading_small slds-p-bottom_small">Selected Testers</h3>
+                                <template for:each={selectedTesters} for:item="tester">
+                                    <div key={tester.value} class="slds-p-around_xx-small">
+                                        <lightning-pill 
+                                            label={tester.label}
+                                            onremove={handleRemoveTester} 
+                                            name={tester.value}>
+                                        </lightning-pill>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- User Search Results -->
+                    <template if:true={matchingUsers.length}>
+                        <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid">
+                            <ul class="slds-listbox slds-listbox_vertical">
+                                <template for:each={matchingUsers} for:item="user">
+                                    <li key={user.value} 
+                                        class="slds-listbox__item" 
+                                        onclick={handleUserSelect} 
+                                        data-id={user.value}>
+                                        <span class="slds-media slds-listbox__option slds-listbox__option_entity">
+                                            {user.label}
+                                        </span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Progress Indicator (now at bottom) -->
+            <div class="slds-grid slds-grid_align-center slds-p-top_large">
+                <lightning-progress-indicator 
+                    current-step={step} 
+                    type="base"
+                    variant="base"
+                >
+                    <lightning-progress-step 
+                        label="Select Test Cases" 
+                        value="1">
+                    </lightning-progress-step>
+                    <lightning-progress-step 
+                        label="Order Test Cases" 
+                        value="2">
+                    </lightning-progress-step>
+                    <lightning-progress-step 
+                        label="Assign Testers" 
+                        value="3">
+                    </lightning-progress-step>
+                </lightning-progress-indicator>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="slds-p-top_medium slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-gutters">
+                <template if:true={step}>
+                    <div class="slds-col">
+                        <lightning-button 
+                            label="Back" 
+                            onclick={handleBack} 
+                            disabled={isStep1}>
+                        </lightning-button>
+                    </div>
+                </template>
+                <div class="slds-col">
+                    <lightning-button 
+                        label={nextButtonLabel}
+                        variant="brand"
+                        onclick={handleNextClick}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

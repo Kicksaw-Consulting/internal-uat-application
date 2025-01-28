@@ -1,0 +1,26 @@
+<template>
+    <div class="slds-p-around_medium">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>Order</th>
+                    <th>Test Case Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={orderedTestCases} for:item="testCase">
+                    <tr key={testCase.Id}
+                        data-id={testCase.Id}
+                        draggable="true"
+                        ondragstart={handleDragStart}
+                        ondrop={handleDrop}
+                        ondragover={handleDragOver}
+                        class="slds-hint-parent">
+                        <td>{testCase.RunOrder__c}</td>
+                        <td>{testCase.Name}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

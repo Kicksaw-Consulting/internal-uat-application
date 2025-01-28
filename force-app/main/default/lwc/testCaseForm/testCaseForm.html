@@ -1,0 +1,65 @@
+<template>
+    <lightning-card title="Create Test Case" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <!-- Description Field -->
+            <lightning-input
+                label="Description"
+                data-field="Name"
+                value={testCaseFields.Name}
+                onchange={handleInputChange}
+                required
+            ></lightning-input>
+
+            <!-- Persona Field -->
+            <lightning-input
+                label="Persona"
+                data-field="Persona__c"
+                value={testCaseFields.Persona__c}
+                onchange={handleInputChange}
+                required
+            ></lightning-input>
+
+            <!-- Pre-Condition Field -->
+            <lightning-input
+                label="Pre Condition"
+                data-field="Pre_Condition__c"
+                value={testCaseFields.Pre_Condition__c}
+                onchange={handleInputChange}
+            ></lightning-input>
+
+            <!-- Steps to Complete (Rich Text) -->
+            <lightning-input-rich-text
+                label="Steps to Complete"
+                data-field="StepsToComplete__c"
+                value={testCaseFields.StepsToComplete__c}
+                onchange={handleRichTextChange}
+            ></lightning-input-rich-text>
+
+            <!-- Expected Result (Rich Text) -->
+            <lightning-input-rich-text
+                label="Expected Result"
+                data-field="ExpectedResult__c"
+                value={testCaseFields.ExpectedResult__c}
+                onchange={handleRichTextChange}
+            ></lightning-input-rich-text>
+
+            <div class="slds-m-top_medium slds-grid slds-grid_align-spread">
+                <lightning-button
+                    label="Create"
+                    variant="brand"
+                    onclick={handleCreate}
+                ></lightning-button>
+                <lightning-button
+                    label="Save and Clone"
+                    variant="neutral"
+                    onclick={handleSaveAndClone}
+                ></lightning-button>
+                <lightning-button
+                    label="Clear"
+                    variant="destructive"
+                    onclick={handleClear}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

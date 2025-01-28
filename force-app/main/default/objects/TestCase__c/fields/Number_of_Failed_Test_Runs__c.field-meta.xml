@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Failed_Test_Runs__c</fullName>
+    <externalId>false</externalId>
+    <label>Number of Failed Test Runs</label>
+    <summaryFilterItems>
+        <field>TestRunCase__c.Result__c</field>
+        <operation>equals</operation>
+        <value>Fail</value>
+    </summaryFilterItems>
+    <summaryForeignKey>TestRunCase__c.TestCase__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

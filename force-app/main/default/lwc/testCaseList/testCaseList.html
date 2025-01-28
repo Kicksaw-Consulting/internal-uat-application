@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Select Test Cases">
+        <lightning-datatable
+            key-field="Id"
+            data={testCases}
+            columns={columns}
+            onrowselection={handleRowSelection}
+        ></lightning-datatable>
+        <div class="slds-m-top_medium">
+            <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

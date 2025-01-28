@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <masterLabel>
+        Current Page Reference Info
+    </masterLabel>
+    <description>
+        A flow component that returns information regarding the User&apos;s current page.
+    </description>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordId" label="Record Id" type="string" role="outputOnly"/>
+            <property name="objectApiName" label="Object Api Name" type="string" role="outputOnly"/>
+            <property name="jsonInfo" label="JSON of entire CurrentPageReference" type="string" role="outputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
