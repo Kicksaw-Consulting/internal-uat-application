@@ -145,6 +145,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>UAT_Feedback__c.JIRA_Ticket_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>UAT_Feedback__c.Needed_for_Go_Live__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -160,7 +165,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>UAT_Feedback__c.Priority_Ranking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UAT_Feedback__c.Priority__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>UAT_Feedback__c.RecordURL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>UAT_Feedback__c.Record_Link__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -181,11 +201,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UAT_Feedback__c.SubmittedBy__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>UAT_Feedback__c.TaskRayTicket__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

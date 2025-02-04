@@ -28,7 +28,7 @@ sfdx force:org:open
 #sfdx force:package:install --package 04t5G000003rUhrQAE --wait 1000
 
 echo "Pushing source metadata...\n"
-sfdx force:source:push 
+sf project deploy start
 
 echo "Assign Admin Permission set..."
 sfdx force:user:permset:assign -n Kicksaw_UAT_App

@@ -1,0 +1,72 @@
+<template>
+    <div class="slds-p-around_medium">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." class="slds-m-bottom_medium"></lightning-spinner>
+        </template>
+        <template if:false={isLoading}>
+            <template for:each={testRuns} for:item="testRun">
+                <lightning-card key={testRun.Id} title={testRun.Name} icon-name="custom:custom63">
+                    <div class="slds-p-horizontal_medium">
+                        <p><strong>Status:</strong> {testRun.Status__c}</p>
+                    </div>
+                    <!-- Tester Assignment Row -->
+                    <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-m-bottom_small">
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning-input
+                                label="Search Tester"
+                                placeholder="Search Users"
+                                type="text"
+                                data-id={testRun.Id}
+                                onchange={handleSearchTester}
+                            ></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <lightning-combobox
+                                label="Matching Users"
+                                placeholder="Select a User"
+                                options={testRun.matchingUsers}
+                                data-id={testRun.Id}
+                                onchange={handleSelectTester}
+                            ></lightning-combobox>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12">
+                            <lightning-button
+                                label="Save Tester"
+                                variant="neutral"
+                                data-id={testRun.Id}
+                                onclick={handleSaveTester}
+                            ></lightning-button>
+                        </div>
+                    </div>
+                    <!-- Test Run Cases -->
+                    <div class="slds-p-around_medium">
+                        <lightning-datatable
+                            key-field="Id"
+                            data={testRun.testRunCases}
+                            columns={columns}
+                            ondragstart={handleDragStart}
+                            ondrop={handleDrop}
+                            ondragover={handleDragOver}
+                        ></lightning-datatable>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div class="slds-p-horizontal_medium slds-m-bottom_medium slds-grid slds-grid_align-end">
+                        <lightning-button
+                            label="Save Run Order"
+                            variant="brand"
+                            data-id={testRun.Id}
+                            onclick={handleSaveRunOrder}
+                            class="slds-m-right_small"
+                        ></lightning-button>
+                        <lightning-button
+                            label="Clone"
+                            variant="neutral"
+                            data-id={testRun.Id}
+                            onclick={handleCloneTestRun}
+                        ></lightning-button>
+                    </div>
+                </lightning-card>
+            </template>
+        </template>
+    </div>
+</template>

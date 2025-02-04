@@ -9,7 +9,7 @@ alias=${1-default}
 n=0
 until [ $n -ge 3 ]
 do
-    sfdx org create scratch -d -f config/scratch-org-def.json -a $alias -w 30 && break
+    sfdx org create scratch -d -f config/scratch-org-def.json -a $alias --duration-days 30 -w 30 && break
     n=$[$n+1]
     sleep 15
 done

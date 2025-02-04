@@ -3,9 +3,10 @@
 # For useful gitignore templates see: https://github.com/github/gitignore
 
 # Salesforce cache
+.sf/
 .sfdx/
 .localdevserver/
-.sf/
+deploy-options.json
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
@@ -37,3 +38,8 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
+
+# Python Salesforce Functions
+**/__pycache__/
+**/.venv/
+**/venv/

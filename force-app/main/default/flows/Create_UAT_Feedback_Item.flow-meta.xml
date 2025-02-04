@@ -10,7 +10,7 @@
             <assignToReference>newUATFeedback.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Status</elementReference>
+                <stringValue>New</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -81,11 +81,24 @@
         <picklistField>Status__c</picklistField>
         <picklistObject>UAT_Feedback__c</picklistObject>
     </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>pcsUATFeedbackType</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Type__c</picklistField>
+        <picklistObject>UAT_Feedback__c</picklistObject>
+    </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
         <name>currentUser</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <name>fxRequiredForBug</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!pcType} = &quot;Bug&quot;, true, false)</expression>
     </formulas>
     <interviewLabel>Create UAT Feedback Item {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create UAT Feedback Item</label>
@@ -113,8 +126,30 @@
         <label>Create UAT Feedback Item</label>
         <locationX>176</locationX>
         <locationY>350</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputReference>newUATFeedback</inputReference>
     </recordCreates>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>440</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>dspError</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;An error occurred while submitting feedback. Please try again. If you continue to see this message, please provide the below error message to Kicksaw.&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(234, 5, 5);&quot;&gt;Error: {!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>New_UAT_Feedback_Item</name>
         <label>New UAT Feedback Item</label>
@@ -127,21 +162,18 @@
             <targetReference>Assign_Variables</targetReference>
         </connector>
         <fields>
-            <name>Status</name>
-            <choiceReferences>choiceUATStatus</choiceReferences>
-            <dataType>String</dataType>
-            <defaultValue>
-                <stringValue>New</stringValue>
-            </defaultValue>
-            <fieldText>Status</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-        <fields>
             <name>Description</name>
             <dataType>String</dataType>
             <fieldText>Description</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pcType</name>
+            <choiceReferences>pcsUATFeedbackType</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -164,6 +196,12 @@
                 <name>required</name>
                 <value>
                     <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <stringValue>If this is an enhancement, please fill in desired behavior</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -195,6 +233,16 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>pcType</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Bug</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Steps</name>
@@ -215,12 +263,22 @@
             <inputParameters>
                 <name>required</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>fxRequiredForBug</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>pcType</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Bug</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>fileUpload</name>
@@ -250,6 +308,23 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>dspSuccess</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Your feedback has been submitted. &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Add New</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>

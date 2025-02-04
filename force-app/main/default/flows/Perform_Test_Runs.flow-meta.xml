@@ -3,14 +3,15 @@
     <actionCalls>
         <name>Convert_a_multiselect_value_to_a_collection</name>
         <label>Convert a multiselect value to a collection</label>
-        <locationX>456</locationX>
-        <locationY>708</locationY>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
         <actionName>multiselectToCollection</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Clear_Variables</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <flowTransactionModel>Automatic</flowTransactionModel>
@@ -28,11 +29,12 @@
     <actionCalls>
         <name>Navigate_to_Test_Run</name>
         <label>Navigate to Test Run</label>
-        <locationX>1290</locationX>
-        <locationY>664</locationY>
+        <locationX>646</locationX>
+        <locationY>3992</locationY>
         <actionName>c:navigateEverywhereLFA</actionName>
         <actionType>component</actionType>
         <connector>
+            <isGoTo>true</isGoTo>
             <targetReference>varTestRun_checkForNull</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -59,8 +61,8 @@
     <actionCalls>
         <name>Redirect_to_Start_URL</name>
         <label>Redirect to Start URL</label>
-        <locationX>1395</locationX>
-        <locationY>1632</locationY>
+        <locationX>734</locationX>
+        <locationY>2936</locationY>
         <actionName>c:navigateEverywhereLFA</actionName>
         <actionType>component</actionType>
         <connector>
@@ -94,8 +96,8 @@
     <assignments>
         <name>Add_Single_Test_Run_Case_to_Collection</name>
         <label>Add Single Test Run Case to Collection</label>
-        <locationX>250</locationX>
-        <locationY>553</locationY>
+        <locationX>138</locationX>
+        <locationY>1322</locationY>
         <assignmentItems>
             <assignToReference>varTestRunCases_Create</assignToReference>
             <operator>Add</operator>
@@ -110,8 +112,8 @@
     <assignments>
         <name>Assign_Single_Test_Run_Case</name>
         <label>Assign Single Test Run Case</label>
-        <locationX>50</locationX>
-        <locationY>429</locationY>
+        <locationX>138</locationX>
+        <locationY>1214</locationY>
         <assignmentItems>
             <assignToReference>varTestRunCase_Create.TestCase__c</assignToReference>
             <operator>Assign</operator>
@@ -140,8 +142,8 @@
     <assignments>
         <name>Clear_Variables</name>
         <label>Clear Variables</label>
-        <locationX>452</locationX>
-        <locationY>572</locationY>
+        <locationX>50</locationX>
+        <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>varTestRunCaseCounter</assignToReference>
             <operator>Assign</operator>
@@ -156,8 +158,8 @@
     <assignments>
         <name>End_of_Loop_Reset_1</name>
         <label>End of Loop Reset</label>
-        <locationX>780</locationX>
-        <locationY>430</locationY>
+        <locationX>50</locationX>
+        <locationY>1838</locationY>
         <assignmentItems>
             <assignToReference>varTestRunConfirmation</assignToReference>
             <operator>Assign</operator>
@@ -170,14 +172,15 @@
             <operator>Assign</operator>
         </assignmentItems>
         <connector>
+            <isGoTo>true</isGoTo>
             <targetReference>Create_Test_Cases_or_perform_your_Test_Run</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>End_of_Loop_Reset_2</name>
         <label>End of Loop Reset</label>
-        <locationX>1358</locationX>
-        <locationY>830</locationY>
+        <locationX>646</locationX>
+        <locationY>3884</locationY>
         <assignmentItems>
             <assignToReference>varTestRunCases_Start</assignToReference>
             <operator>Assign</operator>
@@ -189,8 +192,8 @@
     <assignments>
         <name>Test_Case_Run_Counter_1</name>
         <label>Test Case Run Counter +1</label>
-        <locationX>248</locationX>
-        <locationY>274</locationY>
+        <locationX>138</locationX>
+        <locationY>1106</locationY>
         <assignmentItems>
             <assignToReference>varTestRunCaseCounter</assignToReference>
             <operator>Add</operator>
@@ -221,8 +224,8 @@
     <decisions>
         <name>Does_the_User_have_permission_to_Create_Test_Run_Cases_in_Flow</name>
         <label>Does the User have permission to Create Test Run Cases in Flow</label>
-        <locationX>1021</locationX>
-        <locationY>199</locationY>
+        <locationX>1106</locationX>
+        <locationY>134</locationY>
         <defaultConnector>
             <targetReference>varTestRun_checkForNull</targetReference>
         </defaultConnector>
@@ -246,8 +249,8 @@
     <decisions>
         <name>Is_there_a_Start_Record_Id</name>
         <label>Is there a Start Record Id?</label>
-        <locationX>1302</locationX>
-        <locationY>1426</locationY>
+        <locationX>998</locationX>
+        <locationY>2828</locationY>
         <defaultConnector>
             <targetReference>Test_Case_Run_Screen</targetReference>
         </defaultConnector>
@@ -271,8 +274,8 @@
     <decisions>
         <name>Is_there_at_least_one_Test_Run_record</name>
         <label>Is there at least one Test Run record?</label>
-        <locationX>1152</locationX>
-        <locationY>987</locationY>
+        <locationX>1106</locationX>
+        <locationY>2396</locationY>
         <defaultConnectorLabel>END FLOW</defaultConnectorLabel>
         <rules>
             <name>YESoneTestRunRecord</name>
@@ -293,8 +296,8 @@
     <decisions>
         <name>What_do_you_want_to_do</name>
         <label>What do you want to do?</label>
-        <locationX>897</locationX>
-        <locationY>576</locationY>
+        <locationX>666</locationX>
+        <locationY>350</locationY>
         <defaultConnectorLabel>N/A</defaultConnectorLabel>
         <rules>
             <name>Create_Test_Run</name>
@@ -307,7 +310,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Select_Test_Cases</targetReference>
+                <targetReference>Get_Test_Cases</targetReference>
             </connector>
             <label>Create a Test Run</label>
         </rules>
@@ -393,8 +396,8 @@
     <loops>
         <name>loopTestCaseIds</name>
         <label>Loop Test Case Ids</label>
-        <locationX>452</locationX>
-        <locationY>432</locationY>
+        <locationX>50</locationX>
+        <locationY>998</locationY>
         <collectionReference>varTestCaseIds</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -407,8 +410,8 @@
     <loops>
         <name>loopTestRunCases</name>
         <label>Loop Test Run Cases</label>
-        <locationX>1163</locationX>
-        <locationY>1256</locationY>
+        <locationX>646</locationX>
+        <locationY>2612</locationY>
         <collectionReference>varTestRunCases_Start</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -427,7 +430,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -440,12 +443,13 @@
     <recordCreates>
         <name>Create_Test_Run_Cases</name>
         <label>Create Test Run Cases</label>
-        <locationX>663</locationX>
-        <locationY>336</locationY>
+        <locationX>50</locationX>
+        <locationY>1514</locationY>
         <connector>
-            <targetReference>End_of_Loop_Reset_1</targetReference>
+            <targetReference>Set_Order</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <inputReference>varTestRunCases_Create</inputReference>
@@ -453,12 +457,13 @@
     <recordCreates>
         <name>varTestRun</name>
         <label>Create Test Run</label>
-        <locationX>600</locationX>
-        <locationY>708</locationY>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
         <connector>
             <targetReference>Convert_a_multiselect_value_to_a_collection</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <inputAssignments>
@@ -471,15 +476,38 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <description>Get Test Cases that are not completed</description>
+        <name>Get_Test_Cases</name>
+        <label>Get Test Cases</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Select_Test_Cases</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Not Complete</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>TestCase__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>varTestCase</name>
         <label>Get Test Case</label>
-        <locationX>1398</locationX>
-        <locationY>1317</locationY>
+        <locationX>998</locationX>
+        <locationY>2720</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_there_a_Start_Record_Id</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -497,13 +525,14 @@
     <recordLookups>
         <name>varTestRun_checkForNull</name>
         <label>Get Test Run</label>
-        <locationX>1159</locationX>
-        <locationY>696</locationY>
+        <locationX>1106</locationX>
+        <locationY>2180</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Select_Test_Runs</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -528,13 +557,14 @@
     <recordLookups>
         <name>varTestRunCases_Start</name>
         <label>Get Test Run Cases</label>
-        <locationX>1160</locationX>
-        <locationY>1131</locationY>
+        <locationX>646</locationX>
+        <locationY>2504</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>loopTestRunCases</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -559,11 +589,21 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Sort_Order</name>
+        <label>Update Sort Order</label>
+        <locationX>50</locationX>
+        <locationY>1730</locationY>
+        <connector>
+            <targetReference>End_of_Loop_Reset_1</targetReference>
+        </connector>
+        <inputReference>varTestRunCases_Create</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <description>Update the test case with the most recent run results.</description>
         <name>Update_Test_Case</name>
         <label>Update Test Case</label>
-        <locationX>1055</locationX>
-        <locationY>1381</locationY>
+        <locationX>998</locationX>
+        <locationY>3584</locationY>
         <connector>
             <targetReference>loopTestRunCases</targetReference>
         </connector>
@@ -586,12 +626,13 @@
     <recordUpdates>
         <name>Update_Test_Run</name>
         <label>Update Test Run</label>
-        <locationX>1483</locationX>
-        <locationY>1020</locationY>
+        <locationX>646</locationX>
+        <locationY>3776</locationY>
         <connector>
             <targetReference>End_of_Loop_Reset_2</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Error_Screen</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -619,8 +660,8 @@
     <recordUpdates>
         <name>Update_Test_Run_Case</name>
         <label>Update Test Run Case</label>
-        <locationX>1021</locationX>
-        <locationY>1485</locationY>
+        <locationX>998</locationX>
+        <locationY>3476</locationY>
         <connector>
             <targetReference>Update_Test_Case</targetReference>
         </connector>
@@ -655,8 +696,8 @@
     <screens>
         <name>Create_Test_Cases_or_perform_your_Test_Run</name>
         <label>Create Test Cases or perform your Test Run</label>
-        <locationX>905</locationX>
-        <locationY>425</locationY>
+        <locationX>666</locationX>
+        <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -693,8 +734,8 @@
     <screens>
         <name>Error_Screen</name>
         <label>Error Screen</label>
-        <locationX>481</locationX>
-        <locationY>1181</locationY>
+        <locationX>998</locationX>
+        <locationY>3044</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -714,8 +755,8 @@
     <screens>
         <name>Select_Test_Cases</name>
         <label>Select Test Cases</label>
-        <locationX>739</locationX>
-        <locationY>707</locationY>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -774,8 +815,8 @@
     <screens>
         <name>Select_Test_Runs</name>
         <label>Select Test Runs</label>
-        <locationX>1159</locationX>
-        <locationY>839</locationY>
+        <locationX>1106</locationX>
+        <locationY>2288</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -819,10 +860,66 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Set_Order</name>
+        <label>Set Order</label>
+        <locationX>50</locationX>
+        <locationY>1622</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_Sort_Order</targetReference>
+        </connector>
+        <fields>
+            <name>dt_TestRunCases</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>TestRunCase__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>flowruntime:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Test Run Cases</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>selectionMode</name>
+                <value>
+                    <stringValue>MULTI_SELECT</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>minRowSelection</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>varTestRunCases_Start</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columns</name>
+                <value>
+                    <stringValue>[{&quot;apiName&quot;:&quot;TestCase__c&quot;,&quot;guid&quot;:&quot;column-6db2&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Test Case&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;&quot;,&quot;guid&quot;:&quot;column-6f8e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Test_Case_Run_Screen</name>
         <label>Test Case Run Screen</label>
-        <locationX>1226</locationX>
-        <locationY>1640</locationY>
+        <locationX>998</locationX>
+        <locationY>3368</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -876,13 +973,13 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>903</locationX>
-        <locationY>48</locationY>
+        <locationX>980</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Does_the_User_have_permission_to_Create_Test_Run_Cases_in_Flow</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>varTestCaseIds</name>
         <dataType>String</dataType>

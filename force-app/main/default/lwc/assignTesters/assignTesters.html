@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Assign Testers">
+        <lightning-input
+            label="Search Testers"
+            placeholder="Start typing a name"
+            onchange={handleSearch}
+        ></lightning-input>
+        <ul>
+            <template for:each={matchingUsers} for:item="user">
+                <li key={user.Id} onclick={handleSelectUser}>{user.Name}</li>
+            </template>
+        </ul>
+        <div class="slds-m-top_medium">
+            <lightning-button label="Back" onclick={handleBack}></lightning-button>
+            <lightning-button label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

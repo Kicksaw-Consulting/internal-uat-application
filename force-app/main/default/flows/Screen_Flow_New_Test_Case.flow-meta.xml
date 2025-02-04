@@ -146,6 +146,21 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <isRequired>false</isRequired>
+            <objectFieldReference>varNewUATTestCase.Persona__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <isRequired>false</isRequired>
+            <objectFieldReference>varNewUATTestCase.Pre_Condition__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <isRequired>false</isRequired>
+            <objectFieldReference>varNewUATTestCase.Ticket_Id__c</objectFieldReference>
+        </fields>
+        <fields>
             <name>stepsToComplete</name>
             <extensionName>c:richTextArea</extensionName>
             <fieldType>ComponentInstance</fieldType>

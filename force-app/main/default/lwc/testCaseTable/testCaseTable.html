@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Test Case Table" icon-name="standard:task">
+        <div class="slds-p-around_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={testCases}
+                columns={columns}
+                onrowselection={handleRowSelection}
+            ></lightning-datatable>
+        </div>
+        <div class="slds-p-horizontal_medium slds-p-vertical_small slds-grid slds-grid_align-end">
+            <lightning-button
+                label="Create Test Run"
+                variant="brand"
+                onclick={handleCreateTestRun}
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>

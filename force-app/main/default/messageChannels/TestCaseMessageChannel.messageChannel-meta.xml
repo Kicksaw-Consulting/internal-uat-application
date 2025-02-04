@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata" fqn="TestCaseMessageChannel">
+    <masterLabel>Test Case Message Channel</masterLabel>
+    <description>Message channel for Test Run updates</description>
+    <isExposed>true</isExposed>
+</LightningMessageChannel>
